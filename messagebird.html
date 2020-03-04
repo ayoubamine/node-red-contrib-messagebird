@@ -1,0 +1,43 @@
+<script type="text/javascript">
+  RED.nodes.registerType('messagebird', {
+    category: 'function',
+    color: '#0089ff',
+    defaults: {
+      name: { value: '' },
+      apiKey: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 0,
+    icon: 'font-awesome/fa-commenting-o',
+    label: function() {
+      return this.name || 'messagebird';
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="messagebird">
+  <div class="form-row">
+    <label for="node-input-apiKey"><i class="icon-tag"></i> API Key</label>
+    <input type="text" id="node-input-apiKey" placeholder="API Key">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="messagebird">
+  <p>A Node-RED node to send SMS messages via the MessageBird service.</p>
+
+  <h3>Details</h3>
+  <p><code>msg.payload</code> The body of the SMS message.</p>
+  <p><code>msg.originator</code> The sender of the message. This can be a telephone number (including country code) or an alphanumeric string. In case of an alphanumeric string, the maximum length is 11 characters.</p>
+  <p><code>msg.recipients</code> An array of recipients msisdns.</p>
+
+  <h3>References</h3>
+    <ul>
+      <li><a href="https://developers.messagebird.com/api/sms-messaging">MessageBird API Reference</a></li>
+      <li><a href="https://github.com/ayoubamine/node-red-contrib-messagebird">GitHub</a> - The node github repository</li>
+    </ul>
+</script>
