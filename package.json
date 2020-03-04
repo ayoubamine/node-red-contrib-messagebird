@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/ayoubamine/node-red-contrib-messagebird/issues"
   },
-  "homepage": "https://github.com/ayoubamine/node-red-contrib-messagebird#readme"
+  "homepage": "https://github.com/ayoubamine/node-red-contrib-messagebird#readme",
+  "dependencies": {
+    "messagebird": "^3.4.0"
+  }
 }
