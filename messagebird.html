@@ -1,6 +1,6 @@
 <script type="text/javascript">
-  RED.nodes.registerType('messagebird', {
-    category: 'mobile',
+  RED.nodes.registerType('send sms', {
+    category: 'messagebird',
     color: '#0089ff',
     defaults: {
       name: { value: '' },
@@ -10,12 +10,12 @@
     outputs: 0,
     icon: 'font-awesome/fa-comment',
     label: function() {
-      return this.name || 'messagebird';
+      return this.name || 'send sms';
     }
   });
 </script>
 
-<script type="text/html" data-template-name="messagebird">
+<script type="text/html" data-template-name="send sms">
   <div class="form-row">
     <label for="node-input-apiKey"><i class="icon-tag"></i> API Key</label>
     <input type="text" id="node-input-apiKey" placeholder="API Key">
@@ -27,7 +27,7 @@
   </div>
 </script>
 
-<script type="text/html" data-help-name="messagebird">
+<script type="text/html" data-help-name="send sms">
   <p>A Node-RED node to send SMS messages via the MessageBird service.</p>
 
   <h3>Details</h3>

@@ -26,5 +26,5 @@ module.exports = function(RED) {
       );
     });
   }
-  RED.nodes.registerType('messagebird', MessageBirdNode);
+  RED.nodes.registerType('send sms', MessageBirdNode);
 };
