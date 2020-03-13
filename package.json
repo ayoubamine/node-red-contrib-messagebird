@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ayoubamine/node-red-contrib-messagebird#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "messagebird": "^3.4.0"
   }
 }
