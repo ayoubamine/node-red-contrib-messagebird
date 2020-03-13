@@ -13,9 +13,36 @@
       return this.name || 'send sms';
     }
   });
+
+  RED.nodes.registerType('voice call', {
+    category: 'messagebird',
+    color: '#0089ff',
+    defaults: {
+      name: { value: '' },
+      apiKey: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 0,
+    icon: 'font-awesome/fa-phone',
+    label: function() {
+      return this.name || 'voice call';
+    }
+  });
 </script>
 
 <script type="text/html" data-template-name="send sms">
+  <div class="form-row">
+    <label for="node-input-apiKey"><i class="icon-tag"></i> API Key</label>
+    <input type="text" id="node-input-apiKey" placeholder="API Key">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-template-name="voice call">
   <div class="form-row">
     <label for="node-input-apiKey"><i class="icon-tag"></i> API Key</label>
     <input type="text" id="node-input-apiKey" placeholder="API Key">
@@ -38,6 +65,20 @@
   <h3>References</h3>
     <ul>
       <li><a href="https://developers.messagebird.com/api/sms-messaging">MessageBird API Reference</a></li>
+      <li><a href="https://github.com/ayoubamine/node-red-contrib-messagebird">GitHub</a> - The node github repository</li>
+    </ul>
+</script>
+
+<script type="text/html" data-help-name="voice call">
+  <p>A Node-RED node to send voice messages via the MessageBird service.</p>
+
+  <h3>Details</h3>
+  <p><code>msg.payload</code> The body of the SMS message.</p>
+  <p><code>msg.recipients</code> An array of recipients msisdns.</p>
+
+  <h3>References</h3>
+    <ul>
+      <li><a href="https://developers.messagebird.com/api/voice-messaging">MessageBird API Reference</a></li>
       <li><a href="https://github.com/ayoubamine/node-red-contrib-messagebird">GitHub</a> - The node github repository</li>
     </ul>
 </script>
