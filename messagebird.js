@@ -1,26 +1,24 @@
-var axios = require('axios');
+const axios = require('axios');
 
 module.exports = function(RED) {
   function SendSMSNode(config) {
     RED.nodes.createNode(this, config);
     this.apiKey = config.apiKey;
-    var node = this;
+    const node = this;
     node.on('input', function(msg) {
       if (!node.apiKey) {
-        this.error('Missing MessageBird API Key');
-        return;
+        return node.error('Missing MessageBird API Key');
       }
 
-      var messagebird = require('messagebird')(node.apiKey);
+      const messagebird = require('messagebird')(node.apiKey);
 
       // Send SMS
       messagebird.messages.create(
         {
-          originator: msg.originator,
-          recipients: msg.recipients,
+          ...msg,
           body: msg.payload
         },
-        function(err) {
+        err => {
           if (err) {
             node.error(err.message, msg);
           }
@@ -32,25 +30,26 @@ module.exports = function(RED) {
   function VoiceMessageNode(config) {
     RED.nodes.createNode(this, config);
     this.apiKey = config.apiKey;
-    var node = this;
+    const node = this;
     node.on('input', function(msg) {
       if (!node.apiKey) {
-        this.error('Missing MessageBird API Key');
-        return;
+        return node.error('Missing MessageBird API Key');
       }
-
-      const data = {
-        ...msg,
-        body: msg.payload
-      };
 
       // Send a text to speech message
       axios
-        .post('https://rest.messagebird.com/voicemessages', data, {
-          headers: {
-            Authorization: 'AccessKey ' + node.apiKey
+        .post(
+          'https://rest.messagebird.com/voicemessages',
+          {
+            ...msg,
+            body: msg.payload
+          },
+          {
+            headers: {
+              Authorization: `AccessKey ${node.apiKey}`
+            }
           }
-        })
+        )
         .catch(err => {
           node.error(err.response, msg);
         });
